@@ -1,0 +1,4 @@
+chmod 777 *
+git add .
+git commit -m "fabric yak"
+git push

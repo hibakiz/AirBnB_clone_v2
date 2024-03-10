@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 
-import Fabric
+from fabric.api import env, local, run
 from datetime import datetime
 import os
 
