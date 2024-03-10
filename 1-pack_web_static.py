@@ -3,16 +3,17 @@
 
 from fabric.api import env, local, run
 from datetime import datetime
-import os
+from os.path import isdir
 
 
-def do_peak():
-    """
-    Genertates .tgz
-    """
-    env.local_dir = "~/AirBnB_clone_v2"
-    now = datetime.now()
-    filenmae = f"web_static_{now.strftime('%Y%m%d_%H%M%S')}.tgz"
-    run("mkdir -p versions", pty=True)
-    local(f"tar -cvzf versions/{filenmae} web_static/")
-    return os.path.join(env.local_dir, "versions", filenmae)
+def do_pack():
+    """generates a tgz archive"""
+    try:
+        date = datetime.now().strftime("%Y%m%d%H%M%S")
+        if isdir("versions") is False:
+            local("mkdir versions")
+        file_name = "versions/web_static_{}.tgz".format(date)
+        local("tar -cvzf {} web_static".format(file_name))
+        return file_name
+    except:
+        return None
