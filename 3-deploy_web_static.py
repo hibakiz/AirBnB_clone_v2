@@ -17,6 +17,7 @@ def deploy():
         return False
     return do_deploy(archive_path)
 
+
 def do_pack():
     """generates a tgz archive"""
     try:
@@ -26,7 +27,7 @@ def do_pack():
         file_name = "versions/web_static_{}.tgz".format(date)
         local("tar -cvzf {} web_static".format(file_name))
         return file_name
-    except:
+    except as e:
         return None
 
 
@@ -50,5 +51,5 @@ def do_deploy(archive_path):
         run('ln -s {} /data/web_static/current'.format(releases_path))
         print('New version deployed!')
         return True
-    except:
+    except as e:
         return False
