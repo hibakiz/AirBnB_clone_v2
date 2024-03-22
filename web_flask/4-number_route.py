@@ -23,13 +23,9 @@ def Python_is(string="is cool"):
     new = string.replace("_", " ")
     return (f"Python {new}")
 
-@app.route("/number/<n>", strict_slashes=False)
+@app.route("/number/<int:n>", strict_slashes=False)
 def number(n):
-    try:
-        n = int(n)
-        return (f"{n} is a number")
-    except ValueError:
-        return
+    return (f"{n} is a number")
 
 
 if __name__ == "__main__":
